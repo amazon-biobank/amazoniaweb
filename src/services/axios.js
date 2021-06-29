@@ -2,9 +2,10 @@ import Cookies from 'universal-cookie';
 
 const axios = require('axios');
 const cookies = new Cookies();
-
+const API_PORT = process.env.REACT_APP_API_PORT;
+const API_IP = process.env.REACT_APP_API_IP;
 const instance = axios.create({
-  baseURL: 'http://localhost:3001',
+  baseURL: `http://${API_IP}:${API_PORT}`,
 });
 
 function createAxiosRequestInterceptors(axiosInstance) {

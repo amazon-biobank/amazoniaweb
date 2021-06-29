@@ -4,11 +4,11 @@ import axios from '../../services/axios';
 import { GoogleLogin } from 'react-google-login';
 
 const cookies = new Cookies();
-
+const CLIENT_ID = process.env.REACT_APP_CLIENT_ID;
 export const GoogleSignIn = () => {
   return (
     <GoogleLogin
-      clientId='276120831809-b4esvqup2govrvsm9rmli2h5n5n3gpgf.apps.googleusercontent.com'
+      clientId={CLIENT_ID}
       buttonText='Login'
       onSuccess={onSuccess}
     />
