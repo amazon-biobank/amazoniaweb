@@ -1,6 +1,7 @@
 import { Button } from '@material-ui/core';
 import React from 'react';
 import axios from '../../services/axios';
+const FileDownload = require('js-file-download');
 
 export const DownloadCertificateButton = () => {
   return (
@@ -14,7 +15,7 @@ const onClick = async () => {
   await axios
     .get('/get-credentials')
     .then(function (response) {
-      console.log(response);
+      FileDownload(JSON.stringify(response.data), 'credentials.json');
     })
     .catch(function (error) {
       console.log(error);
