@@ -4,7 +4,7 @@ import Paper from '@material-ui/core/Paper';
 import { Box, Grid, Typography } from '@material-ui/core';
 import { StyledBackground } from './components/background/background.styled';
 import { Logo } from './components/logo/logo.component';
-import { DownloadCertificateButton } from './components/download-certificate-button/download-certificate-button';
+import { DownloadCertificateForm } from './components/download-certificate-form/download-certificate-form';
 import Cookies from 'universal-cookie';
 import { CustomThemeProvider } from './components/theme-provider/theme-provider.component';
 
@@ -53,9 +53,7 @@ const LoggedOutComponents = () => (
 
 const LoggedInComponents = () => (
   <>
-    <Box justifyContent='center' display='flex' marginTop={4}>
-      <DownloadCertificateButton />
-    </Box>
+      <DownloadCertificateForm />
   </>
 );
 
