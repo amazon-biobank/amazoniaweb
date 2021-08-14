@@ -1,6 +1,6 @@
-import Cookies from 'universal-cookie';
+import Cookies from "universal-cookie";
 
-const axios = require('axios');
+const axios = require("axios");
 const cookies = new Cookies();
 const API_PORT = process.env.REACT_APP_API_PORT;
 const API_IP = process.env.REACT_APP_API_IP;
@@ -11,7 +11,7 @@ const instance = axios.create({
 function createAxiosRequestInterceptors(axiosInstance) {
   axiosInstance.interceptors.request.use(
     (config) => {
-      const token = cookies.get('token');
+      const token = cookies.get("token");
       config.headers.authorization = `Bearer ${token}`;
       return config;
     },
@@ -27,10 +27,12 @@ function createAxiosResponseInterceptors(axiosInstance) {
       return response;
     },
     (error) => {
-      if (error.response.status === 403 || error.response.status === 401) {
-        cookies.remove('token');
-        window.location.href = '/login';
+      const errorStatus = error.response && error.response.status;
+      if (errorStatus === 403 || errorStatus === 401) {
+        cookies.remove("token");
+        window.location.href = "/login";
       }
+      throw error;
     }
   );
 }
