@@ -11,6 +11,7 @@ export const GoogleSignIn = () => {
       clientId={CLIENT_ID}
       buttonText='Login'
       onSuccess={onSuccess}
+      onFailure={onFailure}
     />
   );
 };
@@ -30,3 +31,7 @@ const onSuccess = async (googleUser) => {
       console.log(error);
     });
 };
+
+const onFailure = async (response) => {
+  console.log(response)
+}
