@@ -9,9 +9,7 @@ export const GoogleSignIn = () => {
   return (
     <GoogleLogin
       onSuccess={onSuccess}
-      onError={() => {
-        console.log('Login Failed');
-      }}
+      onFailure={onFailure}
     />
   );
 };
@@ -32,7 +30,6 @@ const onSuccess = async (credentialResponse) => {
     });
 };
 
-const onFailure = async (googleUser) => {
-  console.log("Error")
-  console.log(googleUser)
+const onFailure = async (response) => {
+  console.log(response)
 }
