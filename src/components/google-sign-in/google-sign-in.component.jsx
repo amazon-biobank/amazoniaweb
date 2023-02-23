@@ -1,22 +1,23 @@
 import React from 'react';
 import Cookies from 'universal-cookie';
 import axios from '../../services/axios';
-import { GoogleLogin } from 'react-google-login';
+import { GoogleLogin } from '@react-oauth/google';
 
 const cookies = new Cookies();
-const CLIENT_ID = process.env.REACT_APP_CLIENT_ID;
+
 export const GoogleSignIn = () => {
   return (
     <GoogleLogin
-      clientId={CLIENT_ID}
-      buttonText='Login'
       onSuccess={onSuccess}
+      onError={() => {
+        console.log('Login Failed');
+      }}
     />
   );
 };
 
-const onSuccess = async (googleUser) => {
-  const token = googleUser.getAuthResponse().id_token;
+const onSuccess = async (credentialResponse) => {
+  const token = credentialResponse.credential
 
   await axios
     .post('/login', {
@@ -30,3 +31,8 @@ const onSuccess = async (googleUser) => {
       console.log(error);
     });
 };
+
+const onFailure = async (googleUser) => {
+  console.log("Error")
+  console.log(googleUser)
+}
